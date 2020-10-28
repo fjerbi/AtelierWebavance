@@ -93,6 +93,7 @@
             <h2>{{$product->name}}</h2>
             <p>{{$product->description}}</p>
          
+            @if (!Auth::guest())
             <td>
               <form action="{{ route('products.destroy',$product->id) }}" method="POST">
  
@@ -105,12 +106,18 @@
     
                   <button type="submit" class="btn btn-danger">Delete</button>
               </form>
-          </td>
+          </td> 
+@else
+<div class="alert alert-danger" role="alert">
+  You are not Logged in
+</div>
+@endif
+         
           </div>
           @endforeach
         </div>
         <li>
-            {!! $products->links() !!}
+          {{$products->links("pagination::bootstrap-4")}}
         </li>
       
         <hr>

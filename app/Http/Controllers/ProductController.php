@@ -104,12 +104,13 @@ $product->save();
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'category' => 'required',
+            'categories' => 'required',
 
         ]);
        
         $product->update($request->all());
-        $product->categories()->attach($request->category);
+       
+        $product->categories()->sync($request->categories);
         return redirect()->route('products.index')
                         ->with('success','Product updated successfully');
     }
