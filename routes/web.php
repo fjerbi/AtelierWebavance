@@ -26,3 +26,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 Route::resource('products', ProductController::class);
+
+Route::get('category/{name}', 'ProductController@productByCategory');
